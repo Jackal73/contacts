@@ -1,9 +1,17 @@
-// Entry point for the application
-import express from "express";
-import config from "./config.js";
-// TODO: Import the routes
+import faker from "faker";
+import { promises as fs } from "fs";
 
-const app = express();
+fs.writeFile(
+  "data.json",
+
+  JSON.stringify(
+    Array.from({ length: 500 }, () => ({
+      name: faker.name.findName(),
+      phone: faker.phone.phoneNumber(),
+      email: faker.internet.email(),
+    }))
+  )
+);
 
 app.get("/", (_, res) => {
   res.send("Hello World");
