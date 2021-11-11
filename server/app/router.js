@@ -11,4 +11,10 @@ router.get("/", (_, res) => {
   res.send("Hello from API router!");
 });
 
+// Get all contacts from database
+router.get("/contacts", async (req, res) => {
+  const allContacts = await collection.find({}).toArray();
+  res.json(allContacts);
+});
+
 export default router;
