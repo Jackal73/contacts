@@ -17,4 +17,15 @@ router.get("/contacts", async (req, res) => {
   res.json(allContacts);
 });
 
+// ***Working on getting contacts - with parameters***
+router.get("/contacts", async (req, res) => {
+  const contacts = await collection
+    .find({ name: { $regex: "pro", $options: "i" } })
+    .toArray();
+
+  // console.log(req.query);
+  // console.log(req.params);
+  res.json(contacts);
+});
+
 export default router;
